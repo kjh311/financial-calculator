@@ -1,15 +1,28 @@
 body{
   text-align: center;
   font-size: 18px;
+  color: red !important;
 }
 p{
   color: red;
   font-size: 2em;
 }
+.return-text{
+  color: red;
+}
 .calculator{
   border: 2px solid red;
-  width: 400px;
-  height: 600px;
+  width: 100vw;
+  height: 100vh;
   margin: auto;
   margin-top: 20px;
+  background-color: black;
+}
+.total{
+  font-size: 5em;
+  color: red;
+}
+input[type="number"]
+{
+    font-size:1.5em;
 }
