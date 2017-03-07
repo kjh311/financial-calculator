@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<!-- <html ng-app ng-cloak> -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kevin's Financial Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" rel="controller.js"></script>
+
+
+<!-- JQUERY: -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- BOOTSTRAP -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js" type="text/javascript"></script>
+
+<!-- ANGULAR: -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
+    <script type="text/javascript" rel="script.js"></script>
+
+
+</head>
+
+
+<body ng-controller="myCtrl" class="container-fluid">
+
+
+
+<div class="calculator">
+
+
+<form>
+<p>Initial Investment</p>
+<h4>$ <input id="initial" type="number" ng-model="initial" name="initial" required></h4>
+
+<p>Amount Invested / Month</p>
+<h4>$ <input id="month" type="number" ng-model="month" name="month" required></h4>
+
+<p>Interest Rate</p>
+<h4>% <input id="interest" type="number" ng-model="interest" name="interest" required></h4>
+</br> 
+
+<p>Number of Years</p>
+<input id="years" type="number" ng-model="years" name="years" required>
+</br>
+
+</br>
+<button onclick="myFunction()">Calculate</button>
+</form>
+
+
+<h3 class="total"></h3>
+
+
+
+</div>
+
+<script>
+
+// $( document ).ready(function() {
+
+
+
+
+function myFunction() {
+var initialInvestment = $('#initial').val();
+var month = $('#month').val();
+var interest = $('#interest').val();
+var rate = interest/100;
+var years = $('#years').val();
+var months = years * 12;
+var currentAmount = initialInvestment;
+
+  // A = P(1 + rt)
+
+  // $('.total').html("$   " + initialInvestment * (1 + (rate * years)));
+
+
+for (i = 0; i < months; i++) { 
+    currentAmount = currentAmount * (1 + (rate / 12)) ;
+    currentAmount = currentAmount + +month;
+    // alert(currentAmount);
+}
+
+  // PER MONTH INCREASE
+  $('.total').html(accounting.formatMoney(currentAmount.toFixed(2)));
+  
+
+}
+
+
+// });
+
+
+
+// CONTROLLER
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.name = "Kevin";
+
+// var return = {{initial}}(1 + {{interest}}*{{years}});
+// $scope.return = {{initial}}(1 + {{interest}}*{{years}});
+
+
+
+
+
+
+
+});
+
+
+</script>
+
+
+
+</body>
+
+
+
+</html>
